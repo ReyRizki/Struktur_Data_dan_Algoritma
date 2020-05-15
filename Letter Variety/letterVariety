@@ -1,0 +1,67 @@
+Solusi 1
+record LetterCount <
+    letter: char
+    count: integer
+    position: array of char
+>
+
+letterCount: array of LetterCount
+
+Kelebihan   : Paling cepat karena menggunakan array
+Kekurangan  : Paling boros dalam penggunaan memori
+
+Solusi 2
+record Node <
+    info: integer
+    next: address of Node
+>
+
+record LetterCount <
+    letter: char
+    count: integer
+    position: Node
+>
+
+letterCount: array of LetterCount
+
+Kelebihan   : Alokasi memori untuk di field position lebih efektif
+Kekurangan  : Perlu melakukan transversal untuk meanambahkan position ke huruf yang sudah ada di dalam array
+
+Solusi 3
+record LetterCount <
+    letter: char
+    count: integer
+    position: array of integer
+>
+
+record Node <
+    info: LetterCount
+    next: address of Node
+>
+
+letterCount: Node
+
+Kelebihan   : Alokasi memori untuk letterCount lebih efektif
+Kekuarangan : Perlu melakukan transversal setiap 1 huruf dalam string yang diperiksa
+
+Solusi 4
+record IntNode <
+    info: integer
+    next: address of IntNode
+>
+
+record LetterCount <
+    letter: char
+    count: integer
+    position: IntNode
+>
+
+record Node <
+    info: LetterCount
+    next: address of Node
+>
+
+letterCount: Node
+
+Kelebihan   : Alokasi memori paling efektif
+Kekurangan  : Paling lambat karena harus melakukan transversal

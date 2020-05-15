@@ -1,0 +1,7 @@
+First Come First Serve (FSFC)
+First Come First Serve dalam scheduling mengutamakan untuk memproses proses yang memiliki arrival time terlebih dahulu baru
+kemudian memproses proses dengan arrival time berikutnya.
+
+Shortest Job First (SJF)
+Shortest Job First dalam scheduling mengutamakan untuk memproses proses yang memiliki waktu proses tersisa yang lebih sedikit di dalam
+suatu antrean.

@@ -1,0 +1,55 @@
+{ STRUKTUR DATA }
+{ type element:
+	info	: char
+	next	: pointer of element
+}
+{
+	x, y, z, w	: element
+	p, q, r, s	: pointer of element
+}
+
+{ ALGORITMA }
+procedure printList(n: pointer of element)
+begin
+	while (n != NULL)
+	begin
+		write (layar) n.info
+	end
+end
+
+Begin
+    { assignement }
+    p <- address of x
+    p^.info <- 'T'
+    p^.next <- nil
+
+    q <- address of y
+    q^.info <- 'A'
+    q^.next <- nil
+
+    r <- address of z
+    r^.info <- 'H'
+    r^.next <- nil
+
+    { operasi ke-1 }
+    p^.next <- q
+    q^.next <- r
+    printList(p)
+
+    { operasi ke-2 }
+    r^.next <- p
+    p = p^.next
+    r^.next = nil
+    printList(p)
+
+    { membuat tulisan "AHTU" }
+    s <- address of w
+    s^.info <- 'U'
+    s^.next <- nil
+
+    p <- address of x
+    q^.next <- r
+    r^.next <- p
+    p^.next <- s
+    printList(q)
+End
