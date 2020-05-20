@@ -15,9 +15,9 @@ int main()
 {
     TreeRoot root = createTree();
 
-    insertNode(&root, &root, 0, left, 'A');
-    insertNode(&root, &root, 'A', left, 'B');
-    insertNode(&root, &root, 'A', right, 'C');
+    insertNode(&root, &root, 0, left, 1);
+    insertNode(&root, &root, 1, left, 2);
+    insertNode(&root, &root, 1, right, 3);
 
     preorder(root);
     printf("\n");

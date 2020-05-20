@@ -26,7 +26,7 @@
 
 enum child { left, right };
 
-typedef char dataType;
+typedef int dataType;
 typedef struct Node *address;
 
 typedef struct Node

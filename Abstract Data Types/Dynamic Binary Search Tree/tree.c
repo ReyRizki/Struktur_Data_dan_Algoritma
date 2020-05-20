@@ -39,9 +39,11 @@ address createNode(dataType data)
     address node = (Node *)malloc(sizeof(Node));
 
     node->data = data;
-    node->child[left] = NULL;
-    node->child[right] = NULL;
-    node->parent = NULL;
+    node->child[left] = node->child[right] = node->parent = NULL;
+
+    // node->child[left] = NULL;
+    // node->child[right] = NULL;
+    // node->parent = NULL;
 
     return node;
 }
@@ -193,8 +195,7 @@ void treeDegreeUtil(address node, u int *result)
 // Final State		: The node has been visited
 void visitNode(Node node)
 {
-    // if (node.data != 0)
-        printf("%c ", node.data);
+        printf("%d ", node.data);
 }
 
 // Description		: Procedure to traverse a tree by preorder
