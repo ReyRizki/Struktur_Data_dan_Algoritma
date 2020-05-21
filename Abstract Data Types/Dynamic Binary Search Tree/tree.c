@@ -79,30 +79,24 @@ void setNodeChild(address *node, char direction, address child)
 // Description		: Procedure to insert a child to a subtree
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
-void insertNode(TreeRoot *root, address *node, dataType parentData, char index, dataType data)
+address insertNode(TreeRoot root, address node, dataType data)
 {
-    address parentNode = searchNode(*node, parentData);
+    if (node == NULL)
+    {
+        address newNode = createNode(data);
 
-    if (isTreeEmpty(*root))
-        *root = createNode(data);
-    else if (not isTreeEmpty(*root) and parentData == 0 and not findNode(*root, data))
-    {
-        address newRoot = createNode(data);
-        newRoot->child[index] = *root;
-        (*root)->parent = newRoot;
-        (*root) = newRoot;
+        if (not isTreeEmpty(root))
+            newNode->parent = node;
+
+        return newNode;
     }
-    else if (parentNode == NULL)
-        printf("Node with data %c isn't exist\n", parentData);
-    else if (parentNode->child[index] != NULL)
-        printf("Node is already exist\n");
-    else if (findNode(*node, data))
-        printf("Node with data %c is already exist\n", data);
-    else
-    {
-        parentNode->child[index] = createNode(data);
-        parentNode->child[index]->parent = parentNode;
-    }
+
+    if (data < node->data)
+        node->child[left] = insertNode(root, node->child[left], data);
+    else if (data > node->data)
+        node->child[right] = insertNode(root, node->child[right], data);
+
+    return node;
 }
 
 // ===========
@@ -195,7 +189,7 @@ void treeDegreeUtil(address node, u int *result)
 // Final State		: The node has been visited
 void visitNode(Node node)
 {
-        printf("%d ", node.data);
+    printf("%d ", node.data);
 }
 
 // Description		: Procedure to traverse a tree by preorder

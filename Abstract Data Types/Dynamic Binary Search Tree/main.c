@@ -15,14 +15,20 @@ int main()
 {
     TreeRoot root = createTree();
 
-    insertNode(&root, &root, 0, left, 1);
-    insertNode(&root, &root, 1, left, 2);
-    insertNode(&root, &root, 1, right, 3);
+    root = insertNode(root, root, 50);
+    root = insertNode(root, root, 40);
+    root = insertNode(root, root, 70);
+    root = insertNode(root, root, 60);
+    root = insertNode(root, root, 80);
 
-    preorder(root);
+    // insertNode(&root, &root, 0, left, 1);
+    // insertNode(&root, &root, 1, left, 2);
+    // insertNode(&root, &root, 1, right, 3);
+
+    inorder(root);
     printf("\n");
 
-    deleteTree(&root);
+    // deleteTree(&root);
 
     printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
 }
