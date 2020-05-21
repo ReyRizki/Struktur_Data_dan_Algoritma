@@ -352,16 +352,16 @@ address deleteNode(address node, dataType data)
     if (node == NULL)
         return node;
 
-    if (data < node->child[left]->data)
+    if (data < node->data)
         node->child[left] = deleteNode(node->child[left], data);
-    else if (data > node->child[right]->data)
+    else if (data > node->data)
         node->child[right] = deleteNode(node->child[right], data);
     else
     {
         address temp;
-        if (node->child[left] and node->child[right] != NULL)
+        if (node->child[left] != NULL and node->child[right] != NULL)
         {
-            temp = minValueNode(node);
+            temp = minValueNode(node->child[right]);
             node->data = temp->data;
             node->child[right] = deleteNode(node->child[right], temp->data);
         }
