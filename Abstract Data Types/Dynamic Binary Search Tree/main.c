@@ -21,6 +21,10 @@ int main()
     root = insertNode(root, root, 60);
     root = insertNode(root, root, 80);
 
+    printf("%d\n", searchNode(root, 70)->data);
+
+    printf("%d\n", minValueNode(root)->data);
+
     // insertNode(&root, &root, 0, left, 1);
     // insertNode(&root, &root, 1, left, 2);
     // insertNode(&root, &root, 1, right, 3);

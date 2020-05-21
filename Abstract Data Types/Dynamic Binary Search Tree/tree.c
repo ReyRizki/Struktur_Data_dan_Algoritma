@@ -40,11 +40,7 @@ address createNode(dataType data)
 
     node->data = data;
     node->child[left] = node->child[right] = node->parent = NULL;
-
-    // node->child[left] = NULL;
-    // node->child[right] = NULL;
-    // node->parent = NULL;
-
+    
     return node;
 }
 
@@ -264,15 +260,30 @@ void levelorderUtil(address node, u int level)
 // Output			: Address of the data (NULL if data isn't exist)
 address searchNode(address node, dataType data)
 {
-    if (node == NULL or node->data == data)
-        return node;
+    return (node == NULL or node->data == data) ? node : searchNode(node->child[node->data < data], data);
 
-    address result = searchNode(node->child[left], data);
-    if (result != NULL)
-        return result;
+    // if (node == NULL or node->data == data)
+    //     return node;
 
-    result = searchNode(node->child[right], data);
-    return result;
+    // address result = searchNode(node->child[left], data);
+    // if (result != NULL)
+    //     return result;
+
+    // result = searchNode(node->child[right], data);
+    // return result;
+}
+
+// Description		: Function to get the node with minimum value in the tree
+// Input			: Tree root
+// Output			: Node with minimum value;
+address minValueNode(TreeRoot root)
+{
+    address current = root;
+
+    while (current and current->child[left] != NULL)
+        current = current->child[left];
+    
+    return current;
 }
 
 // ============

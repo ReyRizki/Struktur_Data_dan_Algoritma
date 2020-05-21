@@ -159,6 +159,11 @@ void levelorderUtil(address node, u int level);
 // Output			: address of the data (NULL if data isn't exist)
 address searchNode(address node, dataType data);
 
+// Description		: Function to get the node with minimum value in the tree
+// Input			: Tree root
+// Output			: Node with minimum value;
+address minValueNode(TreeRoot root);
+
 // ============
 //  VALIDATORS 
 // ============
