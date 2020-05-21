@@ -200,7 +200,9 @@ void deleteTree(address *node);
 // Description		: Procedure to delete a node if the node is a leaf
 // Initial State	: Node isn't NULL
 // Final State		: Node is NULL and dealocated
-void deleteNode(address *node);
+address deleteNode(address node, dataType data);
+
+// void deleteNode(address *node);
 
 // =======
 //  OTHER 

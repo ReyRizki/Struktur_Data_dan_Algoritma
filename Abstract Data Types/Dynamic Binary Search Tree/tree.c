@@ -40,7 +40,7 @@ address createNode(dataType data)
 
     node->data = data;
     node->child[left] = node->child[right] = node->parent = NULL;
-    
+
     return node;
 }
 
@@ -331,35 +331,68 @@ bool findNode(address node, dataType data)
 // Final State		: Tree is empty
 void deleteTree(address *node)
 {
-    if (*node != NULL)
-    {
-        if (isNodeLeaf(**node))
-            deleteNode(node);
-        else
-        {
-            deleteTree(&((*node)->child[left]));
-            deleteTree(&((*node)->child[right]));
-            deleteNode(node);
-        }
-    }
+    // if (*node != NULL)
+    // {
+    //     if (isNodeLeaf(**node))
+    //         deleteNode(node);
+    //     else
+    //     {
+    //         deleteTree(&((*node)->child[left]));
+    //         deleteTree(&((*node)->child[right]));
+    //         deleteNode(node);
+    //     }
+    // }
 }
 
 // Description		: Procedure to delete a node if the node is a leaf
 // Initial State	: Node isn't NULL
 // Final State		: Node is NULL and dealocated
-void deleteNode(address *node)
+address deleteNode(address node, dataType data)
 {
-    if (isNodeLeaf(**node))
-    {
-        if (not isNodeRoot(**node))
-            (*node)->parent->child[(*node)->parent->child[right] == *node] = NULL;
+    if (node == NULL)
+        return node;
 
-        free(*node);
-        *node = NULL;
-    }
+    if (data < node->child[left]->data)
+        node->child[left] = deleteNode(node->child[left], data);
+    else if (data > node->child[right]->data)
+        node->child[right] = deleteNode(node->child[right], data);
     else
-        printf("The node isn't a leaf\n");
+    {
+        address temp;
+        if (node->child[left] and node->child[right] != NULL)
+        {
+            temp = minValueNode(node);
+            node->data = temp->data;
+            node->child[right] = deleteNode(node->child[right], temp->data);
+        }
+        else
+        {
+            temp = node->child[node->child[left] == NULL];
+
+            if (temp != NULL)
+                temp->parent = node->parent;
+
+            free(node);
+            return temp;
+        }
+    }
+
+    return node;
 }
+
+// void deleteNode(address *node)
+// {
+//     if (isNodeLeaf(**node))
+//     {
+//         if (not isNodeRoot(**node))
+//             (*node)->parent->child[(*node)->parent->child[right] == *node] = NULL;
+
+//         free(*node);
+//         *node = NULL;
+//     }
+//     else
+//         printf("The node isn't a leaf\n");
+// }
 
 // =======
 //  OTHER 

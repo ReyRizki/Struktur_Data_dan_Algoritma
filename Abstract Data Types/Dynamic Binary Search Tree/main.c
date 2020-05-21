@@ -16,14 +16,17 @@ int main()
     TreeRoot root = createTree();
 
     root = insertNode(root, root, 50);
-    root = insertNode(root, root, 40);
+    root = insertNode(root, root, 30);
     root = insertNode(root, root, 70);
+    root = insertNode(root, root, 20);
+    root = insertNode(root, root, 40);
     root = insertNode(root, root, 60);
     root = insertNode(root, root, 80);
 
-    printf("%d\n", searchNode(root, 70)->data);
-
-    printf("%d\n", minValueNode(root)->data);
+    root = deleteNode(root, 20);
+    
+    // printf("%d\n", searchNode(root, 70)->data);
+    // printf("%d\n", minValueNode(root)->data);
 
     // insertNode(&root, &root, 0, left, 1);
     // insertNode(&root, &root, 1, left, 2);
