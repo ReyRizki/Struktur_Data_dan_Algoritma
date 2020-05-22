@@ -73,7 +73,7 @@ void setNodeChild(address *node, char direction, address child);
 // Description		: Procedure to insert a child to a subtree
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
-address insertNode(TreeRoot root, address node, dataType data);
+void insertNode(TreeRoot *root, dataType data);
 
 // ===========
 //  ACCESSORS 

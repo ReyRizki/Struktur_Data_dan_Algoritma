@@ -75,24 +75,33 @@ void setNodeChild(address *node, char direction, address child)
 // Description		: Procedure to insert a child to a subtree
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
-address insertNode(TreeRoot root, address node, dataType data)
+void insertNode(TreeRoot *root, dataType data)
 {
-    if (node == NULL)
+    if (isTreeEmpty(*root))
+        *root = createNode(data);
+    else if (*root != NULL)
     {
-        address newNode = createNode(data);
+        address current = *root, parent = current->parent;
 
-        if (not isTreeEmpty(root))
-            newNode->parent = node;
+        while (current != NULL and current->data != data)
+        {
+            parent = current;
 
-        return newNode;
+            if (data < current->data)
+                current = current->child[left];
+            else if (data > current->data)
+                current = current->child[right];
+        }
+
+        if (current == NULL)
+        {
+            current = createNode(data);
+            current->parent = parent;
+            parent->child[data > parent->data] = current;
+        }
+        else if (data == current->data)
+            printf("Node with data %d is already exist\n", data);
     }
-
-    if (data < node->data)
-        node->child[left] = insertNode(root, node->child[left], data);
-    else if (data > node->data)
-        node->child[right] = insertNode(root, node->child[right], data);
-
-    return node;
 }
 
 // ===========
