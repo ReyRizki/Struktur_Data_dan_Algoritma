@@ -197,12 +197,11 @@ bool findNode(address node, dataType data);
 // Final State		: Tree is empty
 void deleteTree(TreeRoot root);
 
-// Description		: Procedure to delete a node if the node is a leaf
-// Initial State	: Node isn't NULL
-// Final State		: Node is NULL and dealocated
-address deleteNode(address node, dataType data);
-
-// void deleteNode(address *node);
+// Description		: Procedure to delete a node in Binary Search Tree
+// Initial State	: Node is exist
+// Final State		: Node is deleted
+void deleteNode(address *node);
+// address deleteNode(address node, dataType data);
 
 // =======
 //  OTHER 

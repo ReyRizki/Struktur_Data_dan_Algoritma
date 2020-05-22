@@ -23,6 +23,11 @@ int main()
     insertNode(&root, 60);
     insertNode(&root, 80);
 
+    // printf("%d\n", searchNode(root, 20)->data);
+
+    address node = searchNode(root, 50);
+    deleteNode(&node);
+
     preorder(root);
     printf("\n");
 }

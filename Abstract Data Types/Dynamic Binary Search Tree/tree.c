@@ -340,55 +340,84 @@ bool findNode(address node, dataType data)
 // Final State		: Tree is empty
 void deleteTree(TreeRoot root)
 {
-    if (root != NULL)
-    {
-        if (isNodeLeaf(*root))
-            root = deleteNode(root, root->data);
-        else
-        {
-            deleteTree(root->child[left]);
-            deleteTree(root->child[right]);
-            root = deleteNode(root, root->data);
-        }
-    }
+    // if (root != NULL)
+    // {
+    //     if (isNodeLeaf(*root))
+    //         root = deleteNode(root, root->data);
+    //     else
+    //     {
+    //         deleteTree(root->child[left]);
+    //         deleteTree(root->child[right]);
+    //         root = deleteNode(root, root->data);
+    //     }
+    // }
 }
 
-// Description		: Procedure to delete a node if the node is a leaf
-// Initial State	: Node isn't NULL
-// Final State		: Node is NULL and dealocated
-address deleteNode(address node, dataType data)
+// Description		: Procedure to delete a node in Binary Search Tree
+// Initial State	: Node is exist
+// Final State		: Node is deleted
+void deleteNode(address *node)
 {
-    if (node == NULL)
-        return node;
-
-    if (data < node->data)
-        node->child[left] = deleteNode(node->child[left], data);
-    else if (data > node->data)
-        node->child[right] = deleteNode(node->child[right], data);
-    else
+    if (*node != NULL)
     {
         address temp;
 
-        if (node->child[left] != NULL and node->child[right] != NULL)
+        if ((*node)->child[left] and (*node)->child[right] != NULL)
         {
-            temp = minValueNode(node->child[right]);
-            node->data = temp->data;
-            node->child[right] = deleteNode(node->child[right], temp->data);
+            temp = minValueNode((*node)->child[right]);
+            (*node)->data = temp->data;
+            deleteNode(&temp);
         }
         else
         {
-            temp = node->child[node->child[left] == NULL];
+            temp = (*node)->child[(*node)->child[right] == NULL];
+
+            if ((*node)->parent != NULL)
+                (*node)->parent->child[(*node)->data > (*node)->parent->data] = temp;
 
             if (temp != NULL)
-                temp->parent = node->parent;
+                temp->parent = (*node)->parent;
 
-            free(node);
-            return temp;
+            free(*node);
         }
     }
-
-    return node;
+    else
+        printf("Node is not exist\n");
 }
+
+// address deleteNode(address node, dataType data)
+// {
+//     if (node == NULL)
+//         return node;
+
+//     if (data < node->data)
+//         node->child[left] = deleteNode(node->child[left], data);
+//     else if (data > node->data)
+//         node->child[right] = deleteNode(node->child[right], data);
+//     else
+//     {
+//         address temp;
+
+//         if (node->child[left] != NULL and node->child[right] != NULL)
+//         {
+//             temp = minValueNode(node->child[right]);
+//             node->data = temp->data;
+//             node->child[right] = deleteNode(node->child[right], temp->data);
+//         }
+//         else
+//         {
+//             temp = node->child[node->child[left] == NULL];
+
+//             if (temp != NULL)
+//                 temp->parent = node->parent;
+
+//             free(node);
+//             return temp;
+//         }
+//     }
+
+//     return node;
+// }
 
 // void deleteNode(address *node)
 // {
