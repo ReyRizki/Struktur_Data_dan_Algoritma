@@ -195,7 +195,7 @@ bool findNode(address node, dataType data);
 // Description		: Procedure to delete a tree (using postorder traversal)
 // Initial State	: Tree is not empty
 // Final State		: Tree is empty
-void deleteTree(TreeRoot root);
+void deleteTree(TreeRoot *root);
 
 // Description		: Procedure to delete a node in Binary Search Tree
 // Initial State	: Node is exist

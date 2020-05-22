@@ -30,4 +30,7 @@ int main()
 
     preorder(root);
     printf("\n");
+
+    deleteTree(&root);
+    printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
 }
