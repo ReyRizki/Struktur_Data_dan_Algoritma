@@ -50,7 +50,9 @@ int main()
     // inorder(root);
     // printf("\n");
 
-    // deleteTree(&root);
+    deleteTree(root);
+    preorder(root);
+    printf("\n");
 
     printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
 }

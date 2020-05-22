@@ -329,19 +329,19 @@ bool findNode(address node, dataType data)
 // Description		: Procedure to delete a tree (using postorder traversal)
 // Initial State	: Tree is not empty
 // Final State		: Tree is empty
-void deleteTree(address *node)
+void deleteTree(TreeRoot root)
 {
-    // if (*node != NULL)
-    // {
-    //     if (isNodeLeaf(**node))
-    //         deleteNode(node);
-    //     else
-    //     {
-    //         deleteTree(&((*node)->child[left]));
-    //         deleteTree(&((*node)->child[right]));
-    //         deleteNode(node);
-    //     }
-    // }
+    if (root != NULL)
+    {
+        if (isNodeLeaf(*root))
+            root = deleteNode(root, root->data);
+        else
+        {
+            deleteTree(root->child[left]);
+            deleteTree(root->child[right]);
+            root = deleteNode(root, root->data);
+        }
+    }
 }
 
 // Description		: Procedure to delete a node if the node is a leaf
@@ -359,6 +359,7 @@ address deleteNode(address node, dataType data)
     else
     {
         address temp;
+
         if (node->child[left] != NULL and node->child[right] != NULL)
         {
             temp = minValueNode(node->child[right]);

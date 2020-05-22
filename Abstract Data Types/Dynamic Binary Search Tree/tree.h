@@ -161,7 +161,7 @@ address searchNode(address node, dataType data);
 
 // Description		: Function to get the node with minimum value in the tree
 // Input			: Tree root
-// Output			: Node with minimum value;
+// Output			: Node with minimum value
 address minValueNode(TreeRoot root);
 
 // ============
@@ -195,7 +195,7 @@ bool findNode(address node, dataType data);
 // Description		: Procedure to delete a tree (using postorder traversal)
 // Initial State	: Tree is not empty
 // Final State		: Tree is empty
-void deleteTree(address *node);
+void deleteTree(TreeRoot root);
 
 // Description		: Procedure to delete a node if the node is a leaf
 // Initial State	: Node isn't NULL
