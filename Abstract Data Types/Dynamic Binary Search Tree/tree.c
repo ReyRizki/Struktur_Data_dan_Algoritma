@@ -270,16 +270,6 @@ void levelorderUtil(address node, u int level)
 address searchNode(address node, dataType data)
 {
     return (node == NULL or node->data == data) ? node : searchNode(node->child[node->data < data], data);
-
-    // if (node == NULL or node->data == data)
-    //     return node;
-
-    // address result = searchNode(node->child[left], data);
-    // if (result != NULL)
-    //     return result;
-
-    // result = searchNode(node->child[right], data);
-    // return result;
 }
 
 // Description		: Function to get the node with minimum value in the tree
@@ -376,54 +366,6 @@ void deleteNode(address *node)
     else
         printf("Node is not exist\n");
 }
-
-// address deleteNode(address node, dataType data)
-// {
-//     if (node == NULL)
-//         return node;
-
-//     if (data < node->data)
-//         node->child[left] = deleteNode(node->child[left], data);
-//     else if (data > node->data)
-//         node->child[right] = deleteNode(node->child[right], data);
-//     else
-//     {
-//         address temp;
-
-//         if (node->child[left] != NULL and node->child[right] != NULL)
-//         {
-//             temp = minValueNode(node->child[right]);
-//             node->data = temp->data;
-//             node->child[right] = deleteNode(node->child[right], temp->data);
-//         }
-//         else
-//         {
-//             temp = node->child[node->child[left] == NULL];
-
-//             if (temp != NULL)
-//                 temp->parent = node->parent;
-
-//             free(node);
-//             return temp;
-//         }
-//     }
-
-//     return node;
-// }
-
-// void deleteNode(address *node)
-// {
-//     if (isNodeLeaf(**node))
-//     {
-//         if (not isNodeRoot(**node))
-//             (*node)->parent->child[(*node)->parent->child[right] == *node] = NULL;
-
-//         free(*node);
-//         *node = NULL;
-//     }
-//     else
-//         printf("The node isn't a leaf\n");
-// }
 
 // =======
 //  OTHER 

@@ -201,7 +201,6 @@ void deleteTree(TreeRoot *root);
 // Initial State	: Node is exist
 // Final State		: Node is deleted
 void deleteNode(address *node);
-// address deleteNode(address node, dataType data);
 
 // =======
 //  OTHER 
