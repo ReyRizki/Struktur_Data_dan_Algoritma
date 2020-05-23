@@ -200,7 +200,7 @@ void deleteTree(TreeRoot *root);
 // Description		: Procedure to delete a node in Binary Search Tree
 // Initial State	: Node is exist
 // Final State		: Node is deleted
-void deleteNode(address *node);
+void deleteNode(TreeRoot *root, dataType data);
 
 // =======
 //  OTHER 

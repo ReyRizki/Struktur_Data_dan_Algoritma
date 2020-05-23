@@ -25,12 +25,12 @@ int main()
 
     // printf("%d\n", searchNode(root, 20)->data);
 
-    address node = searchNode(root, 50);
-    deleteNode(&node);
+    // address node = searchNode(root, 50);
+    deleteNode(&root, 20);
 
     preorder(root);
     printf("\n");
 
-    deleteTree(&root);
-    printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
+    // deleteTree(&root);
+    // printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
 }
