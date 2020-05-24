@@ -330,39 +330,45 @@ bool findNode(address node, dataType data)
 // Final State		: Tree is empty
 void deleteTree(TreeRoot *root)
 {
-    // while (not isTreeEmpty(*root))
-    //     deleteNode(root);
+    while(not isTreeEmpty(*root))
+        deleteNode(root, (*root)->data);
 }
 
 // Description		: Procedure to delete a node in Binary Search Tree
 // Initial State	: Node is exist
 // Final State		: Node is deleted
 void deleteNode(TreeRoot *root, dataType data)
-{
-    address current = searchNode(*root, data), *node = &current;
+{   
+    address node = searchNode(*root, data);
 
-    if (*node != NULL)
+    if (node != NULL)
     {
         address temp;
 
-        if ((*node)->child[left] and (*node)->child[right] != NULL)
+        if (node->child[left] != NULL and node->child[right] != NULL)
         {
-            temp = minValueNode((*node)->child[right]);
-            (*node)->data = temp->data;
+            temp = minValueNode(node->child[right]);
+            node->data = temp->data;
             deleteNode(&temp, temp->data);
         }
         else
         {
-            temp = (*node)->child[(*node)->child[right] == NULL];
+            temp = node->child[node->child[left] == NULL];
 
-            if ((*node)->parent != NULL)
-                (*node)->parent->child[(*node)->data > (*node)->parent->data] = temp;
+            if (node->parent != NULL)
+                node->parent->child[node->data > node->parent->data] = temp;
 
             if (temp != NULL)
-                temp->parent = (*node)->parent;
+            {
+                temp->parent = node->parent;
+                node->child[temp->data == node->child[right]->data] = NULL;
+            }
 
-            free(*node);
-            *node = NULL;
+            if (isNodeLeaf(**root))
+                *root = NULL;
+
+            free(node);
+            node = NULL;
         }
     }
     else

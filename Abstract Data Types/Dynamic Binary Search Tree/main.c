@@ -23,14 +23,21 @@ int main()
     insertNode(&root, 60);
     insertNode(&root, 80);
 
-    // printf("%d\n", searchNode(root, 20)->data);
-
-    // address node = searchNode(root, 50);
-    deleteNode(&root, 20);
-
     preorder(root);
     printf("\n");
 
-    // deleteTree(&root);
-    // printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
+    deleteNode(&root, 20);
+    preorder(root);
+    printf("\n");
+
+    deleteNode(&root, 30);
+    preorder(root);
+    printf("\n");
+
+    deleteNode(&root, 50);
+    preorder(root);
+    printf("\n");
+
+    deleteTree(&root);
+    printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
 }
