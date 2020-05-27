@@ -164,6 +164,11 @@ address searchNode(address node, dataType data);
 // Output			: Node with minimum value
 address minValueNode(TreeRoot root);
 
+// Description		: A utility function to get balance of the node, used for AVL tree in insertion and deletion
+// Input			: Address of a node
+// Output			: Left child order - Right child order
+int getBalance(address node);
+
 // ============
 //  VALIDATORS 
 // ============

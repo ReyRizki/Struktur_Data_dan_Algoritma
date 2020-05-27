@@ -23,21 +23,14 @@ int main()
     insertNode(&root, 60);
     insertNode(&root, 80);
 
-    preorder(root);
-    printf("\n");
+    printf("%d\n", getBalance(searchNode(root, 50)));
 
     deleteNode(&root, 20);
-    preorder(root);
-    printf("\n");
+    deleteNode(&root, 80);
 
-    deleteNode(&root, 30);
-    preorder(root);
-    printf("\n");
+    printf("%d\n", getBalance(searchNode(root, 30)));
+    printf("%d\n", getBalance(searchNode(root, 70)));
 
-    deleteNode(&root, 50);
-    preorder(root);
-    printf("\n");
-
-    deleteTree(&root);
-    printf(isTreeEmpty(root) ? "Yes\n" : "No\n");
+    insertNode(&root, 65);
+    printf("%d\n", getBalance(searchNode(root, 70)));
 }
