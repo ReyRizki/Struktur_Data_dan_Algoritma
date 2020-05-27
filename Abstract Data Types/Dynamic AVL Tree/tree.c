@@ -75,6 +75,7 @@ void setNodeChild(address *node, char direction, address child)
 // Description		: Procedure to insert a child to a subtree
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 void insertNode(TreeRoot *root, dataType data)
 {
     if (isTreeEmpty(*root))
@@ -98,10 +99,75 @@ void insertNode(TreeRoot *root, dataType data)
             current = createNode(data);
             current->parent = parent;
             parent->child[data > parent->data] = current;
+
+            do
+            {
+                int balance = getBalance(current);
+
+                if (balance > 1)
+                {
+                    if (data > current->child[left]->data)
+                        leftRotate(&current->child[left]);
+                    rightRotate(&current);
+                }
+                else if (balance < -1)
+                {
+                    if (data < current->child[right]->data)
+                        rightRotate(&current->child[right]);
+                    leftRotate(&current);
+                }
+
+                if (isNodeRoot(*current))
+                    *root = current;
+            } while ((current = current->parent) != NULL);
         }
         else if (data == current->data)
             printf("Node with data %d is already exist\n", data);
     }
+}
+
+// Description		: Procedure to rotate a tree using left rotate
+// Initial State	: A tree with three nodes is exist
+// Final State		: The tree is roteted left
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+void leftRotate(address *node)
+{
+    address x = *node, y = x->child[right], T2 = y->child[left];
+
+    if (not isNodeRoot(*x))
+        x->parent->child[right] = y;
+
+    y->child[left] = x;
+    y->parent = x->parent;
+    x->parent = y;
+    
+    x->child[right] = T2;
+    if (T2 != NULL)
+        T2->parent = x;
+
+    *node = y;
+}
+
+// Description		: Procedure to rotate a tree using right rotate
+// Initial State	: A tree with three nodes is exist
+// Final State		: The tree is roteted right
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+void rightRotate(address *node)
+{
+    address y = *node, x = y->child[left], T2 = x->child[right];
+
+    if (not isNodeRoot(*y))
+        y->parent->child[left] = x;
+
+    x->child[right] = y;
+    x->parent = y->parent;
+    y->parent = x;
+
+    y->child[left] = T2;
+    if (T2 != NULL)
+        T2->parent = y;
+
+    *node = x;
 }
 
 // ===========

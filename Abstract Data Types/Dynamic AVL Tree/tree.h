@@ -75,6 +75,18 @@ void setNodeChild(address *node, char direction, address child);
 // Final State		: Child is inserted
 void insertNode(TreeRoot *root, dataType data);
 
+// Description		: Procedure to rotate a tree using left rotate
+// Initial State	: A tree with three nodes is exist
+// Final State		: The tree is roteted left
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+void leftRotate(address *node);
+
+// Description		: Procedure to rotate a tree using right rotate
+// Initial State	: A tree with three nodes is exist
+// Final State		: The tree is roteted right
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+void rightRotate(address *node);
+
 // ===========
 //  ACCESSORS 
 // ===========
@@ -167,6 +179,7 @@ address minValueNode(TreeRoot root);
 // Description		: A utility function to get balance of the node, used for AVL tree in insertion and deletion
 // Input			: Address of a node
 // Output			: Left child order - Right child order
+// Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 int getBalance(address node);
 
 // ============

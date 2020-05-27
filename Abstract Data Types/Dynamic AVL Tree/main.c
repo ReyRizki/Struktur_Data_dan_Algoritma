@@ -15,22 +15,36 @@ int main()
 {
     TreeRoot root = createTree();
 
+    // insertNode(&root, 50);
+    // insertNode(&root, 30);
+    // insertNode(&root, 70);
+    // insertNode(&root, 20);
+    // insertNode(&root, 40);
+    // insertNode(&root, 60);
+    // insertNode(&root, 80);
+
+    // insertNode(&root, 75);
+    
     insertNode(&root, 50);
-    insertNode(&root, 30);
     insertNode(&root, 70);
-    insertNode(&root, 20);
-    insertNode(&root, 40);
-    insertNode(&root, 60);
     insertNode(&root, 80);
 
-    printf("%d\n", getBalance(searchNode(root, 50)));
+    preorder(root);
+    printf("\n");
 
-    deleteNode(&root, 20);
-    deleteNode(&root, 80);
+    // leftRotate(&root->child[right]);
+    // rightRotate(&root);
+    // preorder(root);
+    // printf("\n");
 
-    printf("%d\n", getBalance(searchNode(root, 30)));
-    printf("%d\n", getBalance(searchNode(root, 70)));
+    // printf("%d\n", getBalance(searchNode(root, 50)));
 
-    insertNode(&root, 65);
-    printf("%d\n", getBalance(searchNode(root, 70)));
+    // deleteNode(&root, 20);
+    // deleteNode(&root, 80);
+
+    // printf("%d\n", getBalance(searchNode(root, 30)));
+    // printf("%d\n", getBalance(searchNode(root, 70)));
+
+    // insertNode(&root, 65);
+    // printf("%d\n", getBalance(searchNode(root, 70)));
 }
