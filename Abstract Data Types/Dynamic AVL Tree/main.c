@@ -25,12 +25,12 @@ int main()
 
     // insertNode(&root, 75);
     
-    insertNode(&root, 50);
-    insertNode(&root, 70);
-    insertNode(&root, 80);
+    // insertNode(&root, 50);
+    // insertNode(&root, 70);
+    // insertNode(&root, 80);
 
-    preorder(root);
-    printf("\n");
+    // preorder(root);
+    // printf("\n");
 
     // leftRotate(&root->child[right]);
     // rightRotate(&root);
@@ -47,4 +47,50 @@ int main()
 
     // insertNode(&root, 65);
     // printf("%d\n", getBalance(searchNode(root, 70)));
+
+    // insertNode(&root, 30);
+    // insertNode(&root, 5);
+    // insertNode(&root, 35);
+    // insertNode(&root, 32);
+    // insertNode(&root, 40);
+
+    // preorder(root);
+    // printf("\n");
+    
+    // insertNode(&root, 45);
+    // preorder(root);
+    // printf("\n");
+
+    // insertNode(&root, 13);
+    // insertNode(&root, 10);
+    // insertNode(&root, 15);
+    // insertNode(&root, 16);
+    // insertNode(&root, 11);
+    // insertNode(&root, 5);
+    // insertNode(&root, 4);
+    // insertNode(&root, 6);
+
+    // preorder(root);
+    // printf("\n");
+
+    // insertNode(&root, 7);
+    // preorder(root);
+    // printf("\n");
+
+    // insertNode(&root, 5);
+    // insertNode(&root, 2);
+    // insertNode(&root, 7);
+    // insertNode(&root, 1);
+    // insertNode(&root, 4);
+    // insertNode(&root, 6);
+    // insertNode(&root, 9);
+    // insertNode(&root, 3);
+    // insertNode(&root, 16);
+    
+    // preorder(root);
+    // printf("\n");
+
+    // insertNode(&root, 15);
+    // preorder(root);
+    // printf("\n");
 }

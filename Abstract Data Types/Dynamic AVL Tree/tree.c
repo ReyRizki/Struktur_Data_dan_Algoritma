@@ -135,7 +135,7 @@ void leftRotate(address *node)
     address x = *node, y = x->child[right], T2 = y->child[left];
 
     if (not isNodeRoot(*x))
-        x->parent->child[right] = y;
+        x->parent->child[x->data > x->parent->data] = y;
 
     y->child[left] = x;
     y->parent = x->parent;
@@ -157,7 +157,7 @@ void rightRotate(address *node)
     address y = *node, x = y->child[left], T2 = x->child[right];
 
     if (not isNodeRoot(*y))
-        y->parent->child[left] = x;
+        y->parent->child[y->data > y->parent->data] = x;
 
     x->child[right] = y;
     x->parent = y->parent;
@@ -427,6 +427,8 @@ void deleteNode(TreeRoot *root, dataType data)
         }
         else
         {
+            address current = node->parent;
+
             temp = node->child[node->child[left] == NULL];
 
             if (node->parent != NULL)
@@ -443,6 +445,32 @@ void deleteNode(TreeRoot *root, dataType data)
 
             free(node);
             node = NULL;
+
+            if (*root != NULL)
+            {
+                while (current != NULL)
+                {
+                    int balance = getBalance(current);
+
+                    if (balance > 1)
+                    {
+                        if (getBalance(current->child[left]) < 0)
+                            leftRotate(&current->child[left]);
+                        rightRotate(&current);
+                    }
+                    else if (balance < -1)
+                    {
+                        if (getBalance(current->child[right]) > 0)
+                            rightRotate(&current->child[right]);
+                        leftRotate(&current);
+                    }
+
+                    if (isNodeRoot(*current))
+                        *root = current;
+
+                    current = current->parent;
+                }
+            }
         }
     }
     else
