@@ -93,4 +93,39 @@ int main()
     // insertNode(&root, 15);
     // preorder(root);
     // printf("\n");
+
+    // insertNode(&root, 44);
+    // insertNode(&root, 17);
+    // insertNode(&root, 62);
+    // insertNode(&root, 32);
+    // insertNode(&root, 50);
+    // insertNode(&root, 78);
+    // insertNode(&root, 48);
+    // insertNode(&root, 54);
+    // insertNode(&root, 88);
+
+    // preorder(root);
+    // printf("\n");
+
+    // deleteNode(&root, 32);
+    // preorder(root);
+    // printf("\n");
+    
+    insertNode(&root, 9);
+    insertNode(&root, 5);
+    insertNode(&root, 10);
+    insertNode(&root, 0);
+    insertNode(&root, 6);
+    insertNode(&root, 11);
+    insertNode(&root, -1);
+    insertNode(&root, 1);
+    insertNode(&root, 2);
+
+    preorder(root);
+    printf("\n");
+
+    deleteNode(&root, 10);
+    preorder(root);
+    printf("\n");
+    
 }
