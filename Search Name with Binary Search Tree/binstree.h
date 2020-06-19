@@ -30,7 +30,7 @@
 #define Next(P) (P)->next
 #define Count(P) (P)->count
 
-typedef int infotype;
+typedef char* infotype;
 typedef struct tElmtNode *address;
 typedef struct tElmtNode
 {

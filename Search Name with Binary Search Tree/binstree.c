@@ -7,6 +7,7 @@
 #define BINTREE_C
 
 #include "binstree.h"
+#include <string.h>
 
 extern char C1;
 extern char C2;
@@ -115,7 +116,7 @@ void Preorder(BinTree P)
     /*            Proses secara  Preorder(Right(P)); 		       */
     if (P != Nil)
     {
-        printf("%c", Info(P));
+        printf("%s ", Info(P));
         Preorder(Left(P));
         Preorder(Right(P));
     }
@@ -128,7 +129,7 @@ void Inorder(BinTree P)
     if (P != Nil)
     {
         Inorder(Left(P));
-        printf("%c", Info(P));
+        printf("%s ", Info(P));
         Inorder(Right(P));
     }
 }
@@ -141,7 +142,7 @@ void Postorder(BinTree P)
     {
         Postorder(Left(P));
         Postorder(Right(P));
-        printf("%c", Info(P));
+        printf("%s ", Info(P));
     }
 }
 
@@ -154,7 +155,7 @@ void PrintTree(BinTree P)
     }
     else
     {
-        printf("(%c", Info(P));
+        printf("(%s ", Info(P));
         PrintTree(Left(P));
         PrintTree(Right(P));
         printf(")");
@@ -171,7 +172,7 @@ address Search2(BinTree T, infotype X)
     }
     else
     {
-        if (Info(T) != X)
+        if (strcmp(Info(T), X) != 0)
         {
             L = Search2(Left(T), X);
             if (L == Nil)
@@ -204,9 +205,9 @@ BinTree BuildBalanceTree(int n)
     }
     else
     {
-        char enter;
-        printf("Masukkan data ");
-        scanf("%lc%c", &X, &enter);
+        // char enter;
+        printf("Masukkan data: ");
+        scanf("%s", X);
 
         // printf("Test  -  test !\n");
         P = Alokasi(X);
@@ -235,24 +236,28 @@ void InsSearchTree(BinTree *P, infotype X)
     /*         	   kiri jika nilai  < info(P); insert ke anak */
     /*             kanan jika nilai > info(Akar); 	      */
     /* Alokasi selalu berhasil 				      */
+    // printf("%s\n", X);
     if (IsEmpty(*P))
     {
         MakeTree(X, Nil, Nil, &(*P));
     }
     else
     {
-        if (X == Info(*P))
+        if (strcmp(Info(*P), X) == 0)
         {
             Count(*P)++;
         }
         else
         {
-            if (X < Info(*P))
+            if (strcmp(X, Info(*P)) < 0)
+            // if (X < Info(*P))
             {
+                // printf("smaller\n");
                 InsSearchTree(&(Left(*P)), X);
             }
             else
             { /* X > Info(P)  */
+                // printf("greater\n");
                 InsSearchTree(&(Right(*P)), X);
             }
         }
