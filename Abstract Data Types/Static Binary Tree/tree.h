@@ -72,6 +72,21 @@ int getNodeParent(Tree tree, int index);
 // Output			: Left or right child of the node
 int getNodeChild(Tree tree, int index, bool child);
 
+// Description		: Function to get a node data
+// Input			: Tree with specific index
+// Output			: Data of the node
+dataType getNodeData(Tree tree, int index);
+
+// Description		: Procedure to visit a node (utility for traversal)
+// Initial State	: Tree is exist
+// Final State		: Node is printed
+void visitNode(Tree tree, int index);
+
+// Description		: Procedure to print nodes of a tree with levelorder traversal
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void levelorder(Tree tree);
+
 // ============
 //  VALIDATORS 
 // ============

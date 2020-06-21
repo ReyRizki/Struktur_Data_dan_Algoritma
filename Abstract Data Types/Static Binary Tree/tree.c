@@ -99,6 +99,32 @@ int getNodeChild(Tree tree, int index, bool child)
     return (result >= getCapacity(tree)) ? -1 : result;
 }
 
+// Description		: Function to get a node data
+// Input			: Tree with specific index
+// Output			: Data of the node
+dataType getNodeData(Tree tree, int index)
+{
+    return (isNodeExist(tree, index) ? tree.node[index] : '\0');
+}
+
+// Description		: Procedure to visit a node (utility for traversal)
+// Initial State	: Tree is exist
+// Final State		: Node is printed
+void visitNode(Tree tree, int index)
+{
+    if (isNodeExist(tree, index) and not isNodeEmpty(tree, index))
+        printf("%c ", getNodeData(tree, index));
+}
+
+// Description		: Procedure to print nodes of a tree with levelorder traversal
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void levelorder(Tree tree)
+{
+    REP(i, 0, getCapacity(tree))
+        visitNode(tree, i);
+}
+
 // ============
 //  VALIDATORS 
 // ============
