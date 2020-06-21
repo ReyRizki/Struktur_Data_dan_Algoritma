@@ -87,10 +87,20 @@ int nodeLevel(Tree tree, int index);
 // Output			: Order of the node
 int nodeOrder(Tree tree, int index);
 
+// Description		: Function to get depth of a tree
+// Input			: A tree
+// Output			: Depth of a tree
+int treeDepth(Tree tree);
+
 // Description		: Function to get degree of a node
 // Input			: Tree with specific index
 // Output			: Degree of a node
 u char nodeDegree(Tree tree, int index);
+
+// Description		: Function to get degree of a tree
+// Input			: A tree
+// Output			: Degree of a tree
+u char treeDegree(Tree tree);
 
 // Description		: Procedure to visit a node (utility for traversal)
 // Initial State	: Tree is exist

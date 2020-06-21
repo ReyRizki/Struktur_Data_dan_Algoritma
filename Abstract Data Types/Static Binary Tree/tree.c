@@ -124,12 +124,14 @@ int nodeLevel(Tree tree, int index)
 int nodeOrder(Tree tree, int index)
 {
     return (isNodeEmpty(tree, index) ? -1 : (isNodeLeaf(tree, index) ? 0 : max(nodeOrder(tree, getNodeChild(tree, index, left)), nodeOrder(tree, getNodeChild(tree, index, right))) + 1));
-    // if (isNodeEmpty(tree, index))
-    //     return -1;
-    // else if (isNodeLeaf(tree, index))
-    //     return 0;
-    // else
-    //     return max(nodeOrder(tree, getNodeChild(tree, index, left)), nodeOrder(tree, getNodeChild(tree, index, right))) + 1;
+}
+
+// Description		: Function to get depth of a tree
+// Input			: A tree
+// Output			: Depth of a tree
+int treeDepth(Tree tree)
+{
+    return nodeOrder(tree, 0);
 }
 
 // Description		: Function to get degree of a node
@@ -138,6 +140,19 @@ int nodeOrder(Tree tree, int index)
 u char nodeDegree(Tree tree, int index)
 {
     return (not isNodeEmpty(tree, getNodeChild(tree, index, left))) + (not isNodeEmpty(tree, getNodeChild(tree, index, right)));
+}
+
+// Description		: Function to get degree of a tree
+// Input			: A tree
+// Output			: Degree of a tree
+u char treeDegree(Tree tree)
+{
+    u char result = 0;
+
+    REP(i, 0, getCapacity(tree))
+        result = max(result, nodeDegree(tree, i));
+
+    return result;
 }
 
 // Description		: Procedure to visit a node (utility for traversal)

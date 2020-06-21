@@ -42,13 +42,16 @@ int main()
 
     // printf("%d\n", getNodeChild(tree, 1, left));
     // printf("%d\n", nodeDegree(tree, 3));
-    printf("%d\n", nodeOrder(tree, 0));
+    // printf("%d\n", nodeOrder(tree, 0));
     // printf("%d\n", nodeDegree(tree, 1));
 
     // printf("%d\n", nodeLevel(tree, 1));
     // printf("%d\n", nodeLevel(tree, 4));
 
     // printf("%d\n", nodeDegree(tree, 3));
+
+    // printf("%d\n", treeDepth(tree));
+    printf("%d\n", treeDegree(tree));
 
     // char *arr = (char *) malloc(4 * sizeof(char));
     // char arr[(int) pow(2, 3)];
