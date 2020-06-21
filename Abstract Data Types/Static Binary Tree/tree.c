@@ -85,7 +85,10 @@ u int getCapacity(Tree tree)
 // Description		: Function to get parent of a node in a tree
 // Input			: Tree with specific index
 // Output			: Parent of the node
-int getNodeParent(Tree tree, int index);
+int getNodeParent(Tree tree, int index)
+{
+    return (not isNodeExist(tree, index) or isNodeEmpty(tree, index) or index == 0) ? -1 : (index - 1) / 2;
+}
 
 // Description		: Function to get a left child or right child of a node
 // Input			: Tree with specific index and left or right child
@@ -105,6 +108,14 @@ int getNodeChild(Tree tree, int index, bool child)
 dataType getNodeData(Tree tree, int index)
 {
     return (isNodeExist(tree, index) ? tree.node[index] : '\0');
+}
+
+// Description		: Function to get level of a node
+// Input			: Tree with specific index
+// Output			: Level of the node
+int nodeLevel(Tree tree, int index)
+{
+    return (not isNodeExist(tree, index) or isNodeEmpty(tree, index) ? -1 : nodeLevel(tree, getNodeParent(tree, index)) + 1);
 }
 
 // Description		: Procedure to visit a node (utility for traversal)
@@ -142,10 +153,7 @@ bool isNodeExist(Tree tree, int index)
 // Output			: 1 if empty, 0 if not
 bool isNodeEmpty(Tree tree, int index)
 {
-    if (not isNodeExist(tree, index))
-        return 0;
-
-    return tree.node[index] == '\0';
+    return (isNodeExist(tree, index) ? tree.node[index] == '\0' : 0);
 }
 
 // Description		: Function to check if a tree is empty or not

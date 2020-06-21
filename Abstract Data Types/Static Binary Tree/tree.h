@@ -77,6 +77,11 @@ int getNodeChild(Tree tree, int index, bool child);
 // Output			: Data of the node
 dataType getNodeData(Tree tree, int index);
 
+// Description		: Function to get level of a node
+// Input			: Tree with specific index
+// Output			: Level of the node
+int nodeLevel(Tree tree, int index);
+
 // Description		: Procedure to visit a node (utility for traversal)
 // Initial State	: Tree is exist
 // Final State		: Node is printed

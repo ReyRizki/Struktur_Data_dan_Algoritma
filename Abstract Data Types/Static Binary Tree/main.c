@@ -28,8 +28,20 @@ int main()
     printf("%d\n", isNodeEmpty(tree, 1));
     printf("%c\n", tree.node[1]);
 
+    insertNode(&tree, 0, right, 'C');
+    
+    insertNode(&tree, 1, left, 'D');
+    insertNode(&tree, 1, right, 'E');
+    insertNode(&tree, 2, left, 'F');
+    insertNode(&tree, 2, right, 'G');
+
+    printf("%d\n", isTreeFull(tree));
+    
     levelorder(tree);
     printf("\n");
+
+    printf("%d\n", nodeLevel(tree, 1));
+    printf("%d\n", nodeLevel(tree, 4));
     // char *arr = (char *) malloc(4 * sizeof(char));
     // char arr[(int) pow(2, 3)];
     // printf("%ld\n", sizeof(arr)/sizeof(char));
