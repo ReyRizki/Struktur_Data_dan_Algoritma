@@ -30,7 +30,13 @@ int main()
     insertNode(&tree, &tree.root, 'C', 1, 'E');
     insertNode(&tree, &tree.root, 'X', 1, 'Y');
 
-    printf("%u\n", nodeLevel(searchNode(tree.root, 'X')));
+    printf("%c\n", getNodeParent(tree.root, searchNode(tree.root, 'A'), NULL)->data);
+
+    printf("%d\n", isNodeRoot(tree, searchNode(tree.root, 'D')));
+    printf("%d\n", isNodeRoot(tree, searchNode(tree.root, 'B')));
+
+    printf("%d\n", nodeLevel(tree, searchNode(tree.root, 'X')));
+
     printf("%d\n", nodeOrder(searchNode(tree.root, 'C')));
     printf("%d\n", treeDepth(tree));
     printf("%u\n", nodeDegree(searchNode(tree.root, 'B')));
@@ -45,21 +51,18 @@ int main()
     levelorder(tree.root);
     printf("\n");
 
-    address node = searchNode(tree.root, 'Y');
-    printf((node == NULL) ? "Y\n" : "N\n");
-
-    deleteNode(&tree, &node);
+    address target = searchNode(tree.root, 'Y');
+    deleteNode(&tree, &target);
+    
     preorder(tree.root);
     printf("\n");
 
-    node = tree.root;
-    deleteTree(&tree, &node);
+    target = tree.root;
+    deleteTree(&tree, &target);
 
     preorder(tree.root);
     printf("\n");
     printf(isTreeEmpty(tree) ? "Y\n" : "N\n");
-
-    printf("%d\n", max(2, 1));
 
     return 0;
 }

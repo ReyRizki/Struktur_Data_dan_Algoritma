@@ -1,0 +1,15 @@
+D
+1
+0
+2
+2
+3
+0
+2
+D A B C X Y E 
+B A D X Y C E 
+B A Y X E C D 
+D A C B X E Y 
+D A B C X E 
+
+Y

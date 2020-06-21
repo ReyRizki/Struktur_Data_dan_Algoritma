@@ -45,7 +45,6 @@ address createNode(dataType data)
     node->data = data;
     node->child[left] = NULL;
     node->child[right] = NULL;
-    node->parent = NULL;
 
     return node;
 }
@@ -60,14 +59,6 @@ address createNode(dataType data)
 void setNodeData(address *node, dataType data)
 {
     (*node)->data = data;
-}
-
-// Description		: Procedure to set the parent field of a node
-// Initial State	: Parent field is not setted yet
-// Final State		: Parent field is setted
-void setNodeParent(address *node, address parent)
-{
-    (*node)->parent = parent;
 }
 
 // Description		: Procedure to set the child field of a node with given direction (left or right)
@@ -91,7 +82,6 @@ void insertNode(Tree *tree, address *node, dataType parentData, char index, data
     {
         address newRoot = createNode(data);
         newRoot->child[index] = tree->root;
-        tree->root->parent = newRoot;
         tree->root = newRoot;
     }
     else if (parentNode == NULL)
@@ -101,10 +91,7 @@ void insertNode(Tree *tree, address *node, dataType parentData, char index, data
     else if (findNode(*node, data))
         printf("Node with data %c is already exist\n", data);
     else
-    {
         parentNode->child[index] = createNode(data);
-        parentNode->child[index]->parent = parentNode;
-    }
 }
 
 // ===========
@@ -122,9 +109,20 @@ dataType getNodeData(address node)
 // Description		: Function to get parent node of a node
 // Input			: A node
 // Output			: Parent of the node
-address getNodeParent(address node)
+address getNodeParent(address node, address key, address parent)
 {
-    return node->parent;
+    if (node == NULL)
+        return NULL;
+    else if (node == key)
+        return parent;
+    else
+    {
+        address result = getNodeParent(node->child[left], key, node);
+        if (result != NULL)
+            return result;
+
+        return getNodeParent(node->child[right], key, node);
+    }
 }
 
 // Description		: Function to get child of a node
@@ -138,9 +136,9 @@ address getNodeChild(address node, char direction)
 // Description		: Function to get level of a node recursively
 // Input			: A node
 // Output			: Level of the node
-u int nodeLevel(address node)
+u int nodeLevel(Tree tree, address node)
 {
-    return isNodeRoot(*node) ? 0 : nodeLevel(node->parent) + 1;
+    return isNodeRoot(tree, node) ? 0 : nodeLevel(tree, getNodeParent(tree.root, node, NULL)) + 1;
 }
 
 // Description		: Function to get an order of a node recursively
@@ -299,9 +297,10 @@ bool isTreeEmpty(Tree tree)
 // Description		: Function to chek wether a node is a root or not
 // Input			: A node of a tree
 // Output			: 1 if root, 0 if not
-bool isNodeRoot(Node node)
+bool isNodeRoot(Tree tree, address node)
 {
-    return node.parent == NULL;
+    return getNodeParent(tree.root, node, NULL) == NULL;
+    // return node.parent == NULL;
 }
 
 // Description		: Function to check whether a node is a leaf of not
@@ -349,10 +348,13 @@ void deleteNode(Tree *tree, address *node)
 {
     if (isNodeLeaf(**node))
     {
-        if (not isNodeRoot(**node))
-            (*node)->parent->child[(*node)->parent->child[right] == *node] = NULL;
-        else
+        if (isNodeRoot(*tree, *node))
             tree->root = NULL;
+        else
+        {
+            address parent = getNodeParent(tree->root, *node, NULL);
+            parent->child[parent->child[right] == *node] = NULL;
+        }
 
         free(*node);
         *node = NULL;

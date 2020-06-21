@@ -32,7 +32,7 @@ typedef struct Node *address;
 typedef struct Node
 {
     dataType data;
-    address child[2], parent;
+    address child[2];
 } Node;
 
 typedef struct
@@ -63,11 +63,6 @@ address createNode(dataType data);
 // Final State		: Data field is setted
 void setNodeData(address *node, dataType data);
 
-// Description		: Procedure to set the parent field of a node
-// Initial State	: Parent field is not setted yet
-// Final State		: Parent field is setted
-void setNodeParent(address *node, address parent);
-
 // Description		: Procedure to set the child field of a node with given direction (left or right)
 // Initial State	: Child field is not setted yet
 // Final State		: Child field is setted
@@ -90,7 +85,7 @@ dataType getNodeData(address node);
 // Description		: Function to get parent node of a node
 // Input			: A node
 // Output			: Parent of the node
-address getNodeParent(address node);
+address getNodeParent(address node, address key, address parent);
 
 // Description		: Function to get child of a node
 // Input			: A node, and direction of child (left or right)
@@ -100,7 +95,7 @@ address getNodeChild(address node, char direction);
 // Description		: Function to get level of a node recursively
 // Input			: A node
 // Output			: Level of the node
-u int nodeLevel(address node);
+u int nodeLevel(Tree tree, address node);
 
 // Description		: Function to get an order of a node recursively
 // Input			: A node
@@ -174,7 +169,7 @@ bool isTreeEmpty(Tree tree);
 // Description		: Function to check wether a node is a root or not
 // Input			: A node of a tree
 // Output			: 1 if root, 0 if not
-bool isNodeRoot(Node node);
+bool isNodeRoot(Tree tree, address node);
 
 // Description		: Function to check whether a node is a leaf of not
 // Input			: A node of a tree
