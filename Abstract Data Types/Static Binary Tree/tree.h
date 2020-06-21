@@ -44,14 +44,19 @@ typedef struct binaryTree
 // Output			: An empty tree
 Tree createTree();
 
-// =========
-//  MUTATOR 
-// =========
+// ==========
+//  MUTATORS 
+// ==========
 
 // Description		: Procedure to insert a node to a node's child in a tree. If the tree is empty, then the node inserted to the root
 // Initial State	: Tree is exist
 // Final State		: A node is inserted to a node's child
 void insertNode(Tree *tree, int index, bool child, dataType data);
+
+// Description		: Procedure to empty a node of a tree
+// Initial State	: Node is not empty
+// Final State		: Node is empty
+void emptyNode(Tree *tree, int index);
 
 // ===========
 //  ACCESSORS  
@@ -107,10 +112,30 @@ u char treeDegree(Tree tree);
 // Final State		: Node is printed
 void visitNode(Tree tree, int index);
 
+// Description		: Procedure to traverse a tree with preorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void preorder(Tree tree, int index);
+
+// Description		: Procedure to traverse a tree with inorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void inorder(Tree tree, int index);
+
+// Description		: Procedure to traverse a tree with postorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void postorder(Tree tree, int index);
+
 // Description		: Procedure to print nodes of a tree with levelorder traversal
 // Initial State	: Tree is exist
 // Final State		: Tree is printed
 void levelorder(Tree tree);
+
+// Description		: Function to search a data in a tree
+// Input			: Tree with a key
+// Output			: Index of the node with the key
+int searchNode(Tree tree, dataType key);
 
 // ============
 //  VALIDATORS 
@@ -140,6 +165,20 @@ bool isTreeFull(Tree tree);
 // Input			: A tree with specific index
 // Output			: 1 if the node is leaf, 0 if not
 bool isNodeLeaf(Tree tree, int index);
+
+// Description		: Function to find a node in a tree
+// Input			: Tree with a given key
+// Output			: 1 if found, 0 if not found
+bool findNode(Tree tree, dataType key);
+
+// ============
+//  DESTRUCTOR 
+// ============
+
+// Description		: Procedure to delete a tree
+// Initial State	: Tree is exist
+// Final State		: Tree is not exist
+void deleteTree(Tree *tree);
 
 // =========
 //  UTILITY 

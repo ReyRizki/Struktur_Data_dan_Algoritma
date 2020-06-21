@@ -45,6 +45,10 @@ Tree createTree()
     return tree;
 }
 
+// ==========
+//  MUTATORS 
+// ==========
+
 // Description		: Procedure to insert a node to a node's child in a tree. If the tree is empty, then the node inserted to the root
 // Initial State	: Tree is exist
 // Final State		: A node is inserted to a node's child
@@ -68,6 +72,22 @@ void insertNode(Tree *tree, int index, bool child, dataType data)
         else
             printf("Node is not exist\n");
     }
+}
+
+// Description		: Procedure to empty a node of a tree
+// Initial State	: Node is not empty
+// Final State		: Node is empty
+void emptyNode(Tree *tree, int index)
+{
+    if (not isNodeEmpty(*tree, index))
+    {
+        if (isNodeLeaf(*tree, index))
+            tree->node[index] = '\0';
+        else
+            printf("Node is not a leaf\n");
+    }
+    else
+        printf("Node is already empty\n");
 }
 
 // ===========
@@ -164,6 +184,45 @@ void visitNode(Tree tree, int index)
         printf("%c ", getNodeData(tree, index));
 }
 
+// Description		: Procedure to traverse a tree with preorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void preorder(Tree tree, int index)
+{
+    if (not isNodeEmpty(tree, index))
+    {
+        visitNode(tree, index);
+        preorder(tree, getNodeChild(tree, index, left));
+        preorder(tree, getNodeChild(tree, index, right));
+    }
+}
+
+// Description		: Procedure to traverse a tree with inorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void inorder(Tree tree, int index)
+{
+    if (not isNodeEmpty(tree, index))
+    {
+        inorder(tree, getNodeChild(tree, index, left));
+        visitNode(tree, index);
+        inorder(tree, getNodeChild(tree, index, right));
+    }
+}
+
+// Description		: Procedure to traverse a tree with postorder
+// Initial State	: Tree is exist
+// Final State		: Tree is printed
+void postorder(Tree tree, int index)
+{
+    if (not isNodeEmpty(tree, index))
+    {
+        postorder(tree, getNodeChild(tree, index, left));
+        postorder(tree, getNodeChild(tree, index, right));
+        visitNode(tree, index);
+    }
+}
+
 // Description		: Procedure to print nodes of a tree with levelorder traversal
 // Initial State	: Tree is exist
 // Final State		: Tree is printed
@@ -171,6 +230,18 @@ void levelorder(Tree tree)
 {
     REP(i, 0, getCapacity(tree))
         visitNode(tree, i);
+}
+
+// Description		: Function to search a data in a tree
+// Input			: Tree with a key
+// Output			: Index of the node with the key
+int searchNode(Tree tree, dataType key)
+{
+    REP(i, 0, getCapacity(tree))
+        if (getNodeData(tree, i) == key)
+            return i;
+
+    return -1;
 }
 
 // ============
@@ -220,6 +291,32 @@ bool isNodeLeaf(Tree tree, int index)
 {
     return nodeDegree(tree, index) == 0;
 }
+
+// Description		: Function to find a node in a tree
+// Input			: Tree with a given key
+// Output			: 1 if found, 0 if not found
+bool findNode(Tree tree, dataType key)
+{
+    return searchNode(tree, key) != -1;
+}
+
+// ============
+//  DESTRUCTOR 
+// ============
+
+// Description		: Procedure to delete a tree
+// Initial State	: Tree is exist
+// Final State		: Tree is not exist
+void deleteTree(Tree *tree)
+{
+    tree->capacity = 0;
+    free(tree->node);
+    tree->node = NULL;
+}
+
+// =========
+//  UTILITY 
+// =========
 
 // Description		: Function to get max value of two value
 // Input			: 2 values
