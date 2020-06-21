@@ -17,16 +17,16 @@ int main()
 {
     Tree tree = createTree();
     
-    printf("%u\n", getCapacity(tree));
-    printf("%d\n", isTreeEmpty(tree));
+    // printf("%u\n", getCapacity(tree));
+    // printf("%d\n", isTreeEmpty(tree));
 
     insertNode(&tree, 0, left, 'A');
-    printf("%d\n", isTreeEmpty(tree));
-    printf("%d\n", isNodeEmpty(tree, 0));
+    // printf("%d\n", isTreeEmpty(tree));
+    // printf("%d\n", isNodeEmpty(tree, 0));
 
     insertNode(&tree, 0, left, 'B');
-    printf("%d\n", isNodeEmpty(tree, 1));
-    printf("%c\n", tree.node[1]);
+    // printf("%d\n", isNodeEmpty(tree, 1));
+    // printf("%c\n", tree.node[1]);
 
     insertNode(&tree, 0, right, 'C');
     
@@ -35,13 +35,21 @@ int main()
     insertNode(&tree, 2, left, 'F');
     insertNode(&tree, 2, right, 'G');
 
-    printf("%d\n", isTreeFull(tree));
+    // printf("%d\n", isTreeFull(tree));
     
     levelorder(tree);
     printf("\n");
 
-    printf("%d\n", nodeLevel(tree, 1));
-    printf("%d\n", nodeLevel(tree, 4));
+    // printf("%d\n", getNodeChild(tree, 1, left));
+    // printf("%d\n", nodeDegree(tree, 3));
+    printf("%d\n", nodeOrder(tree, 0));
+    // printf("%d\n", nodeDegree(tree, 1));
+
+    // printf("%d\n", nodeLevel(tree, 1));
+    // printf("%d\n", nodeLevel(tree, 4));
+
+    // printf("%d\n", nodeDegree(tree, 3));
+
     // char *arr = (char *) malloc(4 * sizeof(char));
     // char arr[(int) pow(2, 3)];
     // printf("%ld\n", sizeof(arr)/sizeof(char));

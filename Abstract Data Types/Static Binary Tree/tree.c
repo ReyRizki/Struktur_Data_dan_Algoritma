@@ -118,6 +118,28 @@ int nodeLevel(Tree tree, int index)
     return (not isNodeExist(tree, index) or isNodeEmpty(tree, index) ? -1 : nodeLevel(tree, getNodeParent(tree, index)) + 1);
 }
 
+// Description		: Function to get order of a node
+// Input			: Tree with specific index
+// Output			: Order of the node
+int nodeOrder(Tree tree, int index)
+{
+    return (isNodeEmpty(tree, index) ? -1 : (isNodeLeaf(tree, index) ? 0 : max(nodeOrder(tree, getNodeChild(tree, index, left)), nodeOrder(tree, getNodeChild(tree, index, right))) + 1));
+    // if (isNodeEmpty(tree, index))
+    //     return -1;
+    // else if (isNodeLeaf(tree, index))
+    //     return 0;
+    // else
+    //     return max(nodeOrder(tree, getNodeChild(tree, index, left)), nodeOrder(tree, getNodeChild(tree, index, right))) + 1;
+}
+
+// Description		: Function to get degree of a node
+// Input			: Tree with specific index
+// Output			: Degree of a node
+u char nodeDegree(Tree tree, int index)
+{
+    return (not isNodeEmpty(tree, getNodeChild(tree, index, left))) + (not isNodeEmpty(tree, getNodeChild(tree, index, right)));
+}
+
 // Description		: Procedure to visit a node (utility for traversal)
 // Initial State	: Tree is exist
 // Final State		: Node is printed
@@ -153,7 +175,7 @@ bool isNodeExist(Tree tree, int index)
 // Output			: 1 if empty, 0 if not
 bool isNodeEmpty(Tree tree, int index)
 {
-    return (isNodeExist(tree, index) ? tree.node[index] == '\0' : 0);
+    return (isNodeExist(tree, index) ? tree.node[index] == 0 : 1);
 }
 
 // Description		: Function to check if a tree is empty or not
@@ -174,6 +196,22 @@ bool isTreeFull(Tree tree)
             return 0;
     
     return 1;
+}
+
+// Description		: Function to check if a node is empty or not
+// Input			: A tree with specific index
+// Output			: 1 if the node is leaf, 0 if not
+bool isNodeLeaf(Tree tree, int index)
+{
+    return nodeDegree(tree, index) == 0;
+}
+
+// Description		: Function to get max value of two value
+// Input			: 2 values
+// Output			: Maximum value
+int max(int a, int b)
+{
+    return (a >= b ? a : b);
 }
 
 #endif

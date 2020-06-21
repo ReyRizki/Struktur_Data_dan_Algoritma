@@ -82,6 +82,16 @@ dataType getNodeData(Tree tree, int index);
 // Output			: Level of the node
 int nodeLevel(Tree tree, int index);
 
+// Description		: Function to get order of a node
+// Input			: Tree with specific index
+// Output			: Order of the node
+int nodeOrder(Tree tree, int index);
+
+// Description		: Function to get degree of a node
+// Input			: Tree with specific index
+// Output			: Degree of a node
+u char nodeDegree(Tree tree, int index);
+
 // Description		: Procedure to visit a node (utility for traversal)
 // Initial State	: Tree is exist
 // Final State		: Node is printed
@@ -115,5 +125,19 @@ bool isTreeEmpty(Tree tree);
 // Input			: A tree
 // Output			: 1 if the tree is full, 0 if not
 bool isTreeFull(Tree tree);
+
+// Description		: Function to check if a node is empty or not
+// Input			: A tree with specific index
+// Output			: 1 if the node is leaf, 0 if not
+bool isNodeLeaf(Tree tree, int index);
+
+// =========
+//  UTILITY 
+// =========
+
+// Description		: Function to get max value of two value
+// Input			: 2 values
+// Output			: Maximum value
+int max(int a, int b);
 
 #endif
