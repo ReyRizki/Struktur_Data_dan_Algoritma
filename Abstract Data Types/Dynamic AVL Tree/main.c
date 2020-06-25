@@ -111,21 +111,23 @@ int main()
     // preorder(root);
     // printf("\n");
     
-    insertNode(&root, 9);
-    insertNode(&root, 5);
-    insertNode(&root, 10);
-    insertNode(&root, 0);
-    insertNode(&root, 6);
-    insertNode(&root, 11);
-    insertNode(&root, -1);
-    insertNode(&root, 1);
-    insertNode(&root, 2);
+    root = insertNode(root, 9);
+    insertNode(root, 5);
+    insertNode(root, 10);
+    insertNode(root, 0);
+    insertNode(root, 6);
+    insertNode(root, 11);
+    insertNode(root, -1);
+    insertNode(root, 1);
+    insertNode(root, 2);
 
+    inorder(root);
+    printf("\n");
     preorder(root);
     printf("\n");
 
-    deleteNode(&root, 10);
-    preorder(root);
-    printf("\n");
+    // deleteNode(&root, 10);
+    // preorder(root);
+    // printf("\n");
     
 }

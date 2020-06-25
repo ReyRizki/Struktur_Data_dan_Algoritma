@@ -113,44 +113,28 @@ address insertNode(TreeRoot root, dataType data)
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted left
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-address leftRotate(address node)
+address leftRotate(address x)
 {
-    // address x = *node, y = x->child[right], T2 = y->child[left];
+    address y = x->child[right], T2 = y->child[left];
 
-    // if (not isNodeRoot(*x))
-    //     x->parent->child[x->data > x->parent->data] = y;
+    y->child[left] = x;
+    x->child[right] = T2;
 
-    // y->child[left] = x;
-    // y->parent = x->parent;
-    // x->parent = y;
-    
-    // x->child[right] = T2;
-    // if (T2 != NULL)
-    //     T2->parent = x;
-
-    // *node = y;
+    return y;
 }
 
 // Description		: Procedure to rotate a tree using right rotate
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted right
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-address rightRotate(address node)
+address rightRotate(address y)
 {
-    // address y = *node, x = y->child[left], T2 = x->child[right];
+    address x = y->child[left], T2 = x->child[right];
 
-    // if (not isNodeRoot(*y))
-    //     y->parent->child[y->data > y->parent->data] = x;
+    x->child[right] = y;
+    y->child[left] = T2;
 
-    // x->child[right] = y;
-    // x->parent = y->parent;
-    // y->parent = x;
-
-    // y->child[left] = T2;
-    // if (T2 != NULL)
-    //     T2->parent = y;
-
-    // *node = x;
+    return x;
 }
 
 // ===========

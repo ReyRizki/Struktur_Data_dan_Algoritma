@@ -75,13 +75,13 @@ address insertNode(TreeRoot root, dataType data);
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted left
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-address leftRotate(address node);
+address leftRotate(address x);
 
 // Description		: Procedure to rotate a tree using right rotate
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted right
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-address rightRotate(address node);
+address rightRotate(address y);
 
 // ===========
 //  ACCESSORS 
