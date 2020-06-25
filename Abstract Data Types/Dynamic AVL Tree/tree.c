@@ -149,13 +149,12 @@ dataType getNodeData(address node)
     return node->data;
 }
 
-// change later
 // Description		: Function to get parent node of a node
 // Input			: A node
 // Output			: Parent of the node
-address getNodeParent(address node)
+address getNodeParent(TreeRoot root, address node, address parent)
 {
-    // return node->parent;
+    return (node == NULL) ? NULL : (node == root ? parent : getNodeParent(root->child[node->data > root->data], node, root));
 }
 
 // Description		: Function to get child of a node

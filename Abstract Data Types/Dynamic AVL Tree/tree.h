@@ -95,7 +95,7 @@ dataType getNodeData(address node);
 // Description		: Function to get parent node of a node
 // Input			: A node
 // Output			: Parent of the node
-address getNodeParent(address node);
+address getNodeParent(TreeRoot root, address node, address parent);
 
 // Description		: Function to get child of a node
 // Input			: A node, and direction of child (left or right)

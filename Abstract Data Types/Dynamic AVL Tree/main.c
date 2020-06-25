@@ -126,11 +126,13 @@ int main()
     preorder(root);
     printf("\n");
 
-    root = deleteNode(root, 10);
-    preorder(root);
-    printf("\n");
+    printf("%d\n", getNodeParent(root, searchNode(root, 5), NULL)->data);
+
+    // root = deleteNode(root, 10);
+    // preorder(root);
+    // printf("\n");
     
-    deleteTree(&root);
-    preorder(root);
-    printf("\n");
+    // deleteTree(&root);
+    // preorder(root);
+    // printf("\n");
 }
