@@ -169,8 +169,9 @@ address getNodeChild(address node, char direction)
 // Description		: Function to get level of a node recursively
 // Input			: A node
 // Output			: Level of the node
-u int nodeLevel(address node)
+int nodeLevel(TreeRoot root, address node, u int level)
 {
+    return (root == NULL or node == NULL) ? -1 : (node == root ? level : nodeLevel(root->child[node->data > root->data], node, level + 1));
     // return isNodeRoot(*node) ? 0 : nodeLevel(node->parent) + 1;
 }
 

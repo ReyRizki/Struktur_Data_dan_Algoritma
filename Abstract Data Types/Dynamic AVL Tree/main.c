@@ -127,6 +127,7 @@ int main()
     printf("\n");
 
     printf("%d\n", getNodeParent(root, searchNode(root, 5), NULL)->data);
+    printf("%d\n", nodeLevel(root, searchNode(root, 5), 0));
 
     // root = deleteNode(root, 10);
     // preorder(root);
