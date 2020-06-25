@@ -130,4 +130,7 @@ int main()
     preorder(root);
     printf("\n");
     
+    deleteTree(&root);
+    preorder(root);
+    printf("\n");
 }

@@ -374,8 +374,8 @@ bool findNode(address node, dataType data)
 // Final State		: Tree is empty
 void deleteTree(TreeRoot *root)
 {
-    // while(not isTreeEmpty(*root))
-    //     deleteNode(root, (*root)->data);
+    while(not isTreeEmpty(*root))
+        *root = deleteNode(*root, (*root)->data);
 }
 
 // Description		: Procedure to delete a node in Binary Search Tree
