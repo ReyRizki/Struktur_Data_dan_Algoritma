@@ -121,13 +121,13 @@ int main()
     insertNode(root, 1);
     insertNode(root, 2);
 
-    inorder(root);
-    printf("\n");
+    // inorder(root);
+    // printf("\n");
     preorder(root);
     printf("\n");
 
-    // deleteNode(&root, 10);
-    // preorder(root);
-    // printf("\n");
+    root = deleteNode(root, 10);
+    preorder(root);
+    printf("\n");
     
 }

@@ -374,77 +374,67 @@ bool findNode(address node, dataType data)
 // Final State		: Tree is empty
 void deleteTree(TreeRoot *root)
 {
-    while(not isTreeEmpty(*root))
-        deleteNode(root, (*root)->data);
+    // while(not isTreeEmpty(*root))
+    //     deleteNode(root, (*root)->data);
 }
 
 // Description		: Procedure to delete a node in Binary Search Tree
 // Initial State	: Node is exist
 // Final State		: Node is deleted
-void deleteNode(TreeRoot *root, dataType data)
+address deleteNode(TreeRoot root, dataType data)
 {   
-    // address node = searchNode(*root, data);
+    if (isTreeEmpty(root))
+        return root;
 
-    // if (node != NULL)
-    // {
-    //     address temp;
+    if (data < root->data)
+        root->child[left] = deleteNode(root->child[left], data);
+    else if (data > root->data)
+        root->child[right] = deleteNode(root->child[right], data);
+    else
+    {
+        address temp;
+        if ((root->child[left] == NULL) or (root->child[right] == NULL))
+        {
+            temp = root->child[root->child[left] == NULL];
 
-    //     if (node->child[left] != NULL and node->child[right] != NULL)
-    //     {
-    //         temp = minValueNode(node->child[right]);
-    //         node->data = temp->data;
-    //         deleteNode(&temp, temp->data);
-    //     }
-    //     else
-    //     {
-    //         address current = node->parent;
+            if (temp == NULL)
+            {
+                temp = root;
+                root = NULL;
+            }
+            else
+                *root = *temp;
 
-    //         temp = node->child[node->child[left] == NULL];
+            free(temp);
+        }
+        else
+        {
+            temp = minValueNode(root->child[right]);
 
-    //         if (node->parent != NULL)
-    //             node->parent->child[node->data > node->parent->data] = temp;
+            root->data = temp->data;
+            root->child[right] = deleteNode(root->child[right], data);
+        }
+    }
 
-    //         if (temp != NULL)
-    //         {
-    //             temp->parent = node->parent;
-    //             node->child[temp->data == node->child[right]->data] = NULL;
-    //         }
+    if (isTreeEmpty(root))
+        return root;
 
-    //         if (isNodeLeaf(**root))
-    //             *root = NULL;
+    int balance = getBalance(root);
 
-    //         free(node);
-    //         node = NULL;
-
-    //         if (*root != NULL)
-    //         {
-    //             while (current != NULL)
-    //             {
-    //                 int balance = getBalance(current);
-
-    //                 if (balance > 1)
-    //                 {
-    //                     if (getBalance(current->child[left]) < 0)
-    //                         leftRotate(&current->child[left]);
-    //                     rightRotate(&current);
-    //                 }
-    //                 else if (balance < -1)
-    //                 {
-    //                     if (getBalance(current->child[right]) > 0)
-    //                         rightRotate(&current->child[right]);
-    //                     leftRotate(&current);
-    //                 }
-
-    //                 if (isNodeRoot(*current))
-    //                     *root = current;
-
-    //                 current = current->parent;
-    //             }
-    //         }
-    //     }
-    // }
-    // else
-    //     printf("Node is not exist\n");
+    if (balance > 1)
+    {
+        if (getBalance(root->child[left]) < 0)
+            root->child[left] = leftRotate(root->child[left]);
+        return rightRotate(root);
+    }
+    else if (balance < -1)
+    {
+        if (getBalance(root->child[right]) > 0)
+            root->child[right] = rightRotate(root->child[right]);
+        return leftRotate(root);
+    }
+    
+    return root;
 }
 
 // =======
