@@ -69,19 +69,19 @@ void setNodeChild(address *node, char direction, address child);
 // Description		: Procedure to insert a child to a subtree
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
-void insertNode(TreeRoot *root, dataType data);
+address insertNode(TreeRoot root, dataType data);
 
 // Description		: Procedure to rotate a tree using left rotate
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted left
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-void leftRotate(address *node);
+address leftRotate(address node);
 
 // Description		: Procedure to rotate a tree using right rotate
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted right
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-void rightRotate(address *node);
+address rightRotate(address node);
 
 // ===========
 //  ACCESSORS 

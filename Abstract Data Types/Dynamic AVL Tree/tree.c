@@ -76,61 +76,44 @@ void setNodeChild(address *node, char direction, address child)
 // Initial State	: Child is not inserted yet
 // Final State		: Child is inserted
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-void insertNode(TreeRoot *root, dataType data)
+address insertNode(TreeRoot root, dataType data)
 {
-    // if (isTreeEmpty(*root))
-    //     *root = createNode(data);
-    // else if (*root != NULL)
-    // {
-    //     address current = *root, parent = current->parent;
+    if (isTreeEmpty(root))
+        return createNode(data);
 
-    //     while (current != NULL and current->data != data)
-    //     {
-    //         parent = current;
+    if (data < root->data)
+        root->child[left] = insertNode(root->child[left], data);
+    else if (data > root->data)
+        root->child[right] = insertNode(root->child[right], data);
+    else
+    {
+        printf("Node with data %d is already exist\n", data);
+        return root;
+    }
 
-    //         if (data < current->data)
-    //             current = current->child[left];
-    //         else if (data > current->data)
-    //             current = current->child[right];
-    //     }
+    int balance = getBalance(root);
 
-    //     if (current == NULL)
-    //     {
-    //         current = createNode(data);
-    //         current->parent = parent;
-    //         parent->child[data > parent->data] = current;
+    if (balance > 1)
+    {
+        if (data > root->child[left]->data)
+            root->child[left] = leftRotate(root->child[left]);
+        return rightRotate(root);
+    }
+    else if (balance < -1)
+    {
+        if (data < root->child[right]->data)
+            root->child[right] = rightRotate(root->child[right]);
+        return leftRotate(root);
+    }
 
-    //         do
-    //         {
-    //             int balance = getBalance(current);
-
-    //             if (balance > 1)
-    //             {
-    //                 if (data > current->child[left]->data)
-    //                     leftRotate(&current->child[left]);
-    //                 rightRotate(&current);
-    //             }
-    //             else if (balance < -1)
-    //             {
-    //                 if (data < current->child[right]->data)
-    //                     rightRotate(&current->child[right]);
-    //                 leftRotate(&current);
-    //             }
-
-    //             if (isNodeRoot(*current))
-    //                 *root = current;
-    //         } while ((current = current->parent) != NULL);
-    //     }
-    //     else if (data == current->data)
-    //         printf("Node with data %d is already exist\n", data);
-    // }
+    return root;
 }
 
 // Description		: Procedure to rotate a tree using left rotate
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted left
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-void leftRotate(address *node)
+address leftRotate(address node)
 {
     // address x = *node, y = x->child[right], T2 = y->child[left];
 
@@ -152,7 +135,7 @@ void leftRotate(address *node)
 // Initial State	: A tree with three nodes is exist
 // Final State		: The tree is roteted right
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
-void rightRotate(address *node)
+address rightRotate(address node)
 {
     // address y = *node, x = y->child[left], T2 = x->child[right];
 
