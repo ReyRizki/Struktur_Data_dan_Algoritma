@@ -32,7 +32,8 @@ typedef struct Node *address;
 typedef struct Node
 {
     dataType data;
-    address child[2], parent;
+    address child[2];
+    int height;
 } Node;
 
 typedef address TreeRoot;
@@ -59,11 +60,6 @@ address createNode(dataType data);
 // Initial State	: Data field is not setted yet
 // Final State		: Data field is setted
 void setNodeData(address *node, dataType data);
-
-// Description		: Procedure to set the parent field of a node
-// Initial State	: Parent field is not setted yet
-// Final State		: Parent field is setted
-void setNodeParent(address *node, address parent);
 
 // Description		: Procedure to set the child field of a node with given direction (left or right)
 // Initial State	: Child field is not setted yet

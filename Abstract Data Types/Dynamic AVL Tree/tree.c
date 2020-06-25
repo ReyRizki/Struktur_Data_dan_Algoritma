@@ -39,7 +39,7 @@ address createNode(dataType data)
     address node = (Node *)malloc(sizeof(Node));
 
     node->data = data;
-    node->child[left] = node->child[right] = node->parent = NULL;
+    node->child[left] = node->child[right] = NULL;
 
     return node;
 }
@@ -61,7 +61,7 @@ void setNodeData(address *node, dataType data)
 // Final State		: Parent field is setted
 void setNodeParent(address *node, address parent)
 {
-    (*node)->parent = parent;
+    // (*node)->parent = parent;
 }
 
 // Description		: Procedure to set the child field of a node with given direction (left or right)
@@ -78,52 +78,52 @@ void setNodeChild(address *node, char direction, address child)
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 void insertNode(TreeRoot *root, dataType data)
 {
-    if (isTreeEmpty(*root))
-        *root = createNode(data);
-    else if (*root != NULL)
-    {
-        address current = *root, parent = current->parent;
+    // if (isTreeEmpty(*root))
+    //     *root = createNode(data);
+    // else if (*root != NULL)
+    // {
+    //     address current = *root, parent = current->parent;
 
-        while (current != NULL and current->data != data)
-        {
-            parent = current;
+    //     while (current != NULL and current->data != data)
+    //     {
+    //         parent = current;
 
-            if (data < current->data)
-                current = current->child[left];
-            else if (data > current->data)
-                current = current->child[right];
-        }
+    //         if (data < current->data)
+    //             current = current->child[left];
+    //         else if (data > current->data)
+    //             current = current->child[right];
+    //     }
 
-        if (current == NULL)
-        {
-            current = createNode(data);
-            current->parent = parent;
-            parent->child[data > parent->data] = current;
+    //     if (current == NULL)
+    //     {
+    //         current = createNode(data);
+    //         current->parent = parent;
+    //         parent->child[data > parent->data] = current;
 
-            do
-            {
-                int balance = getBalance(current);
+    //         do
+    //         {
+    //             int balance = getBalance(current);
 
-                if (balance > 1)
-                {
-                    if (data > current->child[left]->data)
-                        leftRotate(&current->child[left]);
-                    rightRotate(&current);
-                }
-                else if (balance < -1)
-                {
-                    if (data < current->child[right]->data)
-                        rightRotate(&current->child[right]);
-                    leftRotate(&current);
-                }
+    //             if (balance > 1)
+    //             {
+    //                 if (data > current->child[left]->data)
+    //                     leftRotate(&current->child[left]);
+    //                 rightRotate(&current);
+    //             }
+    //             else if (balance < -1)
+    //             {
+    //                 if (data < current->child[right]->data)
+    //                     rightRotate(&current->child[right]);
+    //                 leftRotate(&current);
+    //             }
 
-                if (isNodeRoot(*current))
-                    *root = current;
-            } while ((current = current->parent) != NULL);
-        }
-        else if (data == current->data)
-            printf("Node with data %d is already exist\n", data);
-    }
+    //             if (isNodeRoot(*current))
+    //                 *root = current;
+    //         } while ((current = current->parent) != NULL);
+    //     }
+    //     else if (data == current->data)
+    //         printf("Node with data %d is already exist\n", data);
+    // }
 }
 
 // Description		: Procedure to rotate a tree using left rotate
@@ -132,20 +132,20 @@ void insertNode(TreeRoot *root, dataType data)
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 void leftRotate(address *node)
 {
-    address x = *node, y = x->child[right], T2 = y->child[left];
+    // address x = *node, y = x->child[right], T2 = y->child[left];
 
-    if (not isNodeRoot(*x))
-        x->parent->child[x->data > x->parent->data] = y;
+    // if (not isNodeRoot(*x))
+    //     x->parent->child[x->data > x->parent->data] = y;
 
-    y->child[left] = x;
-    y->parent = x->parent;
-    x->parent = y;
+    // y->child[left] = x;
+    // y->parent = x->parent;
+    // x->parent = y;
     
-    x->child[right] = T2;
-    if (T2 != NULL)
-        T2->parent = x;
+    // x->child[right] = T2;
+    // if (T2 != NULL)
+    //     T2->parent = x;
 
-    *node = y;
+    // *node = y;
 }
 
 // Description		: Procedure to rotate a tree using right rotate
@@ -154,20 +154,20 @@ void leftRotate(address *node)
 // Reference        : https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
 void rightRotate(address *node)
 {
-    address y = *node, x = y->child[left], T2 = x->child[right];
+    // address y = *node, x = y->child[left], T2 = x->child[right];
 
-    if (not isNodeRoot(*y))
-        y->parent->child[y->data > y->parent->data] = x;
+    // if (not isNodeRoot(*y))
+    //     y->parent->child[y->data > y->parent->data] = x;
 
-    x->child[right] = y;
-    x->parent = y->parent;
-    y->parent = x;
+    // x->child[right] = y;
+    // x->parent = y->parent;
+    // y->parent = x;
 
-    y->child[left] = T2;
-    if (T2 != NULL)
-        T2->parent = y;
+    // y->child[left] = T2;
+    // if (T2 != NULL)
+    //     T2->parent = y;
 
-    *node = x;
+    // *node = x;
 }
 
 // ===========
@@ -182,12 +182,13 @@ dataType getNodeData(address node)
     return node->data;
 }
 
+// change later
 // Description		: Function to get parent node of a node
 // Input			: A node
 // Output			: Parent of the node
 address getNodeParent(address node)
 {
-    return node->parent;
+    // return node->parent;
 }
 
 // Description		: Function to get child of a node
@@ -198,12 +199,13 @@ address getNodeChild(address node, char direction)
     return node->child[direction];
 }
 
+// change later
 // Description		: Function to get level of a node recursively
 // Input			: A node
 // Output			: Level of the node
 u int nodeLevel(address node)
 {
-    return isNodeRoot(*node) ? 0 : nodeLevel(node->parent) + 1;
+    // return isNodeRoot(*node) ? 0 : nodeLevel(node->parent) + 1;
 }
 
 // Description		: Function to get an order of a node recursively
@@ -371,12 +373,13 @@ bool isTreeEmpty(TreeRoot root)
     return root == NULL;
 }
 
+// change later
 // Description		: Function to chek wether a node is a root or not
 // Input			: A node of a tree
 // Output			: 1 if root, 0 if not
 bool isNodeRoot(Node node)
 {
-    return node.parent == NULL;
+    // return node.parent == NULL;
 }
 
 // Description		: Function to check whether a node is a leaf of not
@@ -413,68 +416,68 @@ void deleteTree(TreeRoot *root)
 // Final State		: Node is deleted
 void deleteNode(TreeRoot *root, dataType data)
 {   
-    address node = searchNode(*root, data);
+    // address node = searchNode(*root, data);
 
-    if (node != NULL)
-    {
-        address temp;
+    // if (node != NULL)
+    // {
+    //     address temp;
 
-        if (node->child[left] != NULL and node->child[right] != NULL)
-        {
-            temp = minValueNode(node->child[right]);
-            node->data = temp->data;
-            deleteNode(&temp, temp->data);
-        }
-        else
-        {
-            address current = node->parent;
+    //     if (node->child[left] != NULL and node->child[right] != NULL)
+    //     {
+    //         temp = minValueNode(node->child[right]);
+    //         node->data = temp->data;
+    //         deleteNode(&temp, temp->data);
+    //     }
+    //     else
+    //     {
+    //         address current = node->parent;
 
-            temp = node->child[node->child[left] == NULL];
+    //         temp = node->child[node->child[left] == NULL];
 
-            if (node->parent != NULL)
-                node->parent->child[node->data > node->parent->data] = temp;
+    //         if (node->parent != NULL)
+    //             node->parent->child[node->data > node->parent->data] = temp;
 
-            if (temp != NULL)
-            {
-                temp->parent = node->parent;
-                node->child[temp->data == node->child[right]->data] = NULL;
-            }
+    //         if (temp != NULL)
+    //         {
+    //             temp->parent = node->parent;
+    //             node->child[temp->data == node->child[right]->data] = NULL;
+    //         }
 
-            if (isNodeLeaf(**root))
-                *root = NULL;
+    //         if (isNodeLeaf(**root))
+    //             *root = NULL;
 
-            free(node);
-            node = NULL;
+    //         free(node);
+    //         node = NULL;
 
-            if (*root != NULL)
-            {
-                while (current != NULL)
-                {
-                    int balance = getBalance(current);
+    //         if (*root != NULL)
+    //         {
+    //             while (current != NULL)
+    //             {
+    //                 int balance = getBalance(current);
 
-                    if (balance > 1)
-                    {
-                        if (getBalance(current->child[left]) < 0)
-                            leftRotate(&current->child[left]);
-                        rightRotate(&current);
-                    }
-                    else if (balance < -1)
-                    {
-                        if (getBalance(current->child[right]) > 0)
-                            rightRotate(&current->child[right]);
-                        leftRotate(&current);
-                    }
+    //                 if (balance > 1)
+    //                 {
+    //                     if (getBalance(current->child[left]) < 0)
+    //                         leftRotate(&current->child[left]);
+    //                     rightRotate(&current);
+    //                 }
+    //                 else if (balance < -1)
+    //                 {
+    //                     if (getBalance(current->child[right]) > 0)
+    //                         rightRotate(&current->child[right]);
+    //                     leftRotate(&current);
+    //                 }
 
-                    if (isNodeRoot(*current))
-                        *root = current;
+    //                 if (isNodeRoot(*current))
+    //                     *root = current;
 
-                    current = current->parent;
-                }
-            }
-        }
-    }
-    else
-        printf("Node is not exist\n");
+    //                 current = current->parent;
+    //             }
+    //         }
+    //     }
+    // }
+    // else
+    //     printf("Node is not exist\n");
 }
 
 // =======
